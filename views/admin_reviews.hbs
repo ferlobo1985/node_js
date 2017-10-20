@@ -1,0 +1,26 @@
+<div class="container dashboard">
+
+    {{>dashboard_nav}}
+
+    <div class="dash_body">
+        <div class="dash_reviews">
+            {{#each userReviews}}
+            <div class="item">
+                <div class="title">
+                    Post name:
+                    <a href="/games/{{this.postId}}">{{this.titlePost}}</a>
+                    </span>
+                </div>
+                <div class="user_review">
+                    {{this.review}}
+                </div>
+                <div class="user_rating">
+                    Your rating: {{this.rating}}/10
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+
+</div>

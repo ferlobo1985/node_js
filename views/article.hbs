@@ -1,0 +1,116 @@
+<div class="container_article">
+    <div class="article">
+        <div class="top">
+            Published at {{date}} by
+            <strong>{{article.ownerUsername}}</strong>
+        </div>
+        <div class="title">
+            <h2>{{article.title}}</h2>
+        </div>
+        <div class="content">
+            {{article.review}}
+        </div>
+        <div class="rating">
+            <div>
+                <span>Rating:</span> {{article.rating}}/ 10
+            </div>
+        </div>
+    </div>
+    <div class="user_reviews">
+        <div class="user_reviews_wrapper">
+            <h3>User reviews:</h3>
+            {{#each userReviews}}
+            <div class="item">
+                <div class="username">{{this.ownerUsername}} -
+                    <span> Rating: {{this.rating}}/10</span>
+                </div>
+                <div class="user_r">
+                    {{this.review}}
+                </div>
+            </div>
+            {{/each}}
+
+
+        </div>
+        <div class="user_add_reviews_wrapper">
+            {{#if review}}
+            <h3>Add your review</h3>
+            <form id="user_review" data-id="{{article._id}}">
+                <div>
+                    <input type="hidden" id="titlePost" name="titlePost" value="{{article.title}}">
+                </div>
+                <div>
+                    <input type="text" id="rating" name="rating" placeholder="Add your rating form 1 to 10">
+                </div>
+                <div>
+                    <textarea id="review" name="review" placeholder="Add your awesome review"></textarea>
+                </div>
+                <button>Add review</button>
+            </form>
+            {{else}}
+            <div class="register">
+                <a href="/login">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    Log in to add a review</a>
+            </div>
+            {{/if}}
+
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script>
+        $("#user_review").validate({
+            rules: {
+                review: "required",
+                rating: {
+                    required: true,
+                    number: true,
+                    max: 10
+                }
+            },
+            messages: {
+                review: "Please enter a review",
+                rating: {
+                    required: "Please enter a rating",
+                    number: "Please enter a number"
+                }
+            },
+            submitHandler: function (form, event) {
+                event.preventDefault();
+                postData();
+            }
+        });
+
+        function postData(){
+
+            const userReview = {
+                id:$('#user_review').data('id'),
+                review: $('#review').val(),
+                rating: $('#rating').val(),
+                titlePost: $('#titlePost').val()
+            }
+
+            $.ajax({
+                type:'POST',
+                url:'/api/user_review',
+                data:JSON.stringify(userReview),
+                contentType:'application/json',
+                success:()=>{
+                    window.location.reload(false)
+                },
+                error:()=>{
+                    alert('problem')
+                }
+            })
+
+        }
+
+
+
+
+
+    </script>

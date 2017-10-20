@@ -1,0 +1,78 @@
+    <div class="container dashboard">
+        {{>dashboard_nav}}
+            <div class="dash_body">
+                
+                <h1>Add article</h1>
+        
+                <form id="article_form">
+                    <div>
+                        <input type="text" name="title" id="title" placeholder="Add a title">
+                    </div>
+        
+                    <div>
+                        <textarea type="text" name="review" id="review" placeholder="Add your review here"></textarea>
+                    </div>
+        
+                    <div>
+                        <input type="text" name="rating" id="rating" placeholder="Add your rating from 1 to 10">
+                    </div>
+        
+                    <button type="submit"> Add article </button>
+        
+                </form>
+        
+            </div>
+        </div>
+    
+<script>
+        $("#article_form").validate({
+			rules: {
+				title: "required",
+				review: "required",
+                rating: {
+                   required: true,
+                   number: true,
+                   max:10
+                }
+			},
+			messages: {
+				title: "Please enter a title",
+				review: "Please enter a review",
+                rating:{
+                    required: "Please enter a rating",
+                    number: "Please enter a number"
+                }
+			},
+            submitHandler: function(form,event) {
+                event.preventDefault();
+                postData();
+            }
+		});
+
+
+        function postData(){
+
+            const article = {
+                title:$('#title').val(),
+                review:$('#review').val(),
+                rating:$('#rating').val(),
+            }
+
+            $.ajax({
+                type:'POST',
+                url:'/api/add_article',
+                data:JSON.stringify(article),
+                contentType:'application/json',
+                success:(data)=>{
+                    alert('good')
+                },
+                error:()=>{
+                    alert('Big problem')
+                }
+            })
+
+
+        }
+
+</script>
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Righteous|Roboto:300,400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="validate.min.js"></script>
+
+    <title>The game division</title>
+</head>
+
+<body>
+    <header>
+        <i class="fa fa-gamepad" aria-hidden="true"></i>
+        <a class="logo" href="/">The game division</a>
+    </header>
+
+    <div class="container_register">
+        <h1>Register for free !!</h1>
+        <form id="register_form">
+
+            <div>
+                <input type="text" id="username" name="username" placeholder="Pick a username">
+            </div>
+
+            <div>
+                <input type="text" id="firstname" name="firstname" placeholder="Your Firstname">
+            </div>
+
+            <div>
+                <input type="text" id="lastname" name="lastname" placeholder="Your Lastname">
+            </div>
+
+            <div>
+                <input type="text" id="email" name="email" placeholder="youremail@email.com">
+            </div>
+
+            <div>
+                <input type="password" id="password" name="password" placeholder="Enter password">
+            </div>
+
+            <div>
+                <input type="password" id="password_confirm" name="password_confirm" placeholder="Re-Enter password">
+            </div>
+
+            <button type="submit">Register</button>
+            <span>or
+                <a href="/login">Login</a>
+            </span>
+        </form>
+    </div>
+
+
+</body>
+<script>
+    
+    $("#register_form").validate({
+			rules: {
+                username:"required",
+				firstname: "required",
+				lastname: "required",
+                email: {
+                   required: true,
+                   email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                password_confirm: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                }
+			},
+			messages: {
+                username:"Please add a username",
+				name: "Please enter your firstname",
+				lastname: "Please enter your lastname",
+                email:"Please enter a valid email",
+                password:{
+                    required:"The password is required",
+                    minlength:"The min is 5 characters"
+                },
+                password_confirm:"Password is not the same :S"
+			},
+            submitHandler: function(form,event) {
+                event.preventDefault();
+                submitForm();
+            }
+		});
+
+</script>
+</html>

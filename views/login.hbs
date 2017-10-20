@@ -1,0 +1,45 @@
+    <div class="container_login">
+        <form id="login_form">
+            <h1>Log in</h1>
+            <div>
+                <input type="text" id="email" name="email" placeholder="enter your mail">
+            </div>
+
+            <div>
+                <input type="password" id="password" name="password" placeholder="enter your password">
+            </div>
+
+            <button type="submit">Log in</button>
+            <span>or
+                <a href="/register">Register</a>
+            </span>
+        </form>
+    </div>
+
+    <script>
+
+        $('#login_form').on('submit',function(e){
+            e.preventDefault();
+
+            const user = {
+                email:$('#email').val(),
+                password:$('#password').val()
+            }
+
+            $.ajax({
+                type:'POST',
+                url:'/api/login',
+                data:JSON.stringify(user),
+                contentType: 'application/json',
+                success:(date)=>{
+                    window.location.href = "/dashboard"
+                },
+                error:()=>{
+                    alert('problem !! :(')
+                }
+            })
+
+        })
+
+
+    </script>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Righteous|Roboto:300,400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="validate.min.js"></script>
+
+    <title>The game division</title>
+</head>
+
+<body>
+    <header>
+        <i class="fa fa-gamepad" aria-hidden="true"></i><a class="logo" href="/">The game division</a>
+    </header>
+
+    
+
+<div class="container_article">
+    <div class="article">
+        <div class="top">
+            Published at DATE by <strong>USERNAME</strong>
+        </div>
+        <div class="title">
+            <h2>TITLE</h2>
+        </div>
+        <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div class="rating">
+            <div>
+                <span>Rating:</span> RATING/ 10
+            </div>
+        </div>
+    </div>
+    <div class="user_reviews">
+        <div class="user_reviews_wrapper">
+            <h3>User reviews:</h3>
+
+                <div class="item">
+                    <div class="username">USERNAME - <span> Rating: RATING/10</span></div>
+                    <div class="user_r">
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                </div>
+
+        
+        </div>
+        <div class="user_add_reviews_wrapper">
+      
+                <h3>Add your review</h3>
+                <form id="user_review" data-id="">
+                    <div>
+                        <input type="hidden" id="titlePost" name="titlePost" value="">
+                    </div>
+                    <div>
+                        <input type="text" id="rating" name="rating" placeholder="Add your rating form 1 to 10">
+                    </div>
+                    <div>
+                        <textarea id="review" name="review" placeholder="Add your awesome review"></textarea>
+                    </div>
+                    <button>Add review</button>
+                </form>
+ 
+
+
+                <div class="register">
+                    <a href="/login">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> 
+                        Log in to add a review</a>
+                </div>
+          
+                
+        </div>
+    </div>
+
+
+</div>
+
+    
+
+</body>
+<script>
+        $("#user_review").validate({
+			rules: {
+				review: "required",
+                rating: {
+                   required: true,
+                   number: true,
+                   max:10
+                }
+			},
+			messages: {
+				review: "Please enter a review",
+                rating:{
+                    required: "Please enter a rating",
+                    number: "Please enter a number"
+                }
+			},
+            submitHandler: function(form,event) {
+                event.preventDefault();
+                postData();
+            }
+		});
+</script>
+</html>

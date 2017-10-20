@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Righteous|Roboto:300,400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="validate.min.js"></script>
+
+    <title>The game division</title>
+</head>
+
+<body>
+    
+    <div class="container dashboard">
+
+        <div class="dash_nav">
+            <!--  HOME --> 
+            <div class="item">
+                <a href="/">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!--  REVIEWS --> 
+            <div class="item">
+                <a href="/dashboard/reviews">
+                    <i class="fa fa-commenting" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!--  ARTICLES --> 
+          
+            <div class="item">
+                
+                <a href="/dashboard/articles">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <!--  LOGOUT --> 
+            <div class="item">
+                <a href="/dashboard/logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        
+            <div class="dash_body">
+                
+                <h1>Add article</h1>
+        
+                <form id="article_form">
+                    <div>
+                        <input type="text" name="title" id="title" placeholder="Add a title">
+                    </div>
+        
+                    <div>
+                        <textarea type="text" name="review" id="review" placeholder="Add your review here"></textarea>
+                    </div>
+        
+                    <div>
+                        <input type="text" name="rating" id="rating" placeholder="Add your rating from 1 to 10">
+                    </div>
+        
+                    <button type="submit"> Add article </button>
+        
+                </form>
+        
+            </div>
+        </div>
+    
+
+</body>
+<script>
+        $("#article_form").validate({
+			rules: {
+				title: "required",
+				review: "required",
+                rating: {
+                   required: true,
+                   number: true,
+                   max:10
+                }
+			},
+			messages: {
+				title: "Please enter a title",
+				review: "Please enter a review",
+                rating:{
+                    required: "Please enter a rating",
+                    number: "Please enter a number"
+                }
+			},
+            submitHandler: function(form,event) {
+                event.preventDefault();
+                postData();
+            }
+		});
+
+</script>
+</html>
+

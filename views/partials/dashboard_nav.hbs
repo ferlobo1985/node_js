@@ -1,0 +1,29 @@
+<div class="dash_nav">
+            <!--  HOME --> 
+            <div class="item">
+                <a href="/">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!--  REVIEWS --> 
+            <div class="item">
+                <a href="/dashboard/reviews">
+                    <i class="fa fa-commenting" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!--  ARTICLES --> 
+            {{#if isAdmin}}
+                <div class="item">
+                    
+                    <a href="/dashboard/articles">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </div>
+            {{/if}}
+            <!--  LOGOUT --> 
+            <div class="item">
+                <a href="/dashboard/logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
