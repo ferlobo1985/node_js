@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="add_book.html">Add book</a>
+            <a href="add_store.html">Add Store</a>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Add a Book</h2>
+        <form id="books_form">
+
+            <div class="form-element">
+                <label>Edit a book name:</label>
+                <input type="text" name="name" id="name">
+            </div>
+
+            <div class="form-element">
+                <label>Add the author:</label>
+                <input type="text" name="author" id="author">
+            </div>
+
+            <div class="form-element">
+                <label>Number of pages:</label>
+                <input type="text" name="pages" id="pages">
+            </div>
+
+            <div class="form-element">
+                <label>Price:</label>
+                <input type="text" name="price" id="price">
+            </div>
+
+            <div class="form-element">
+                <label>Stores:</label>
+                <select name="stores" id="stores" multiple>
+                </select>
+            </div>
+
+
+            <div class="form-element">
+                <button type="submit">Edit Book</button>
+                <div id="delete_book"> DELETE </div>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+<script>
+    $.ajax({
+        type:"GET",
+        url:"/api/stores",
+        success:(data,status,xhr)=>{
+            data.map((item)=>{
+                $('#stores').append($('<option>',{
+                   value: item.name,
+                   text: item.name
+                }))
+            })
+        },
+        error:()=>{
+            alert('something went wrong :*')
+        }
+    })
+
+    let searchParams = new URLSearchParams(window.location.search); /// ?book_id=r432434
+    let bookID = searchParams.get("book_id");
+
+    $.ajax({
+        type:"GET",
+        url:`/api/books/${bookID}`,
+        success:(data,status,xhr)=>{
+            $('#name').val(data.name);
+            $('#author').val(data.author);
+            $('#pages').val(data.pages);
+            $('#price').val(data.price);
+            $('#stores').val(data.stores);
+        },
+        error:()=>{
+            alert('Something is wrong !!!')
+        }
+    })
+    
+    $('#books_form').submit((e)=>{
+        e.preventDefault();
+
+        let bookObj = {
+            name: $('#name').val(),
+            author:$('#author').val(),
+            pages:$('#pages').val(),
+            price:$('#price').val(),
+            stores:$('#stores').val()
+        }
+
+        $.ajax({
+            type:"PATCH",
+            url:`/api/add/books/${bookID}`,
+            data:JSON.stringify(bookObj),
+            contentType:"application/json",
+            success:(data,statu,xhr)=>{
+                console.log(data);
+                alert('the book was updated')
+            },
+            error:()=>{
+                alert('something is wrong')
+            }
+        })
+
+    })
+
+
+    $('#delete_book').click(()=>{
+
+        $.ajax({
+            type:"DELETE",
+            url:`/api/delete/books/${bookID}`,
+            success:(data,status,xhr)=>{
+                alert('deleted')
+            },
+            error:()=>{
+                alert('something is wrong')
+            }
+        })
+
+    })
+
+
+</script>
+
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="add_book.html">Add book</a>
+            <a href="add_store.html">Add Store</a>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Add a Book</h2>
+        <form id="books_form">
+
+            <div class="form-element">
+                <label>Add a book name:</label>
+                <input type="text" name="name" id="name">
+            </div>
+
+            <div class="form-element">
+                <label>Add the author:</label>
+                <input type="text" name="author" id="author">
+            </div>
+
+            <div class="form-element">
+                <label>Number of pages:</label>
+                <input type="text" name="pages" id="pages">
+            </div>
+
+            <div class="form-element">
+                <label>Price:</label>
+                <input type="text" name="price" id="price">
+            </div>
+
+            <div class="form-element">
+                <label>Stores:</label>
+                <select name="stores" id="stores" multiple>
+                </select>
+            </div>
+
+        
+            <div class="form-element">
+                <button type="submit">Add Book</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+<script>
+
+    $.ajax({
+        type:"GET",
+        url:"/api/stores",
+        success:(data,status,xhr)=>{
+            data.map((item)=>{
+                $('#stores').append($('<option>',{
+                   value: item.name,
+                   text: item.name
+                }))
+            })
+        },
+        error:()=>{
+            alert('something went wrong :*')
+        }
+    })
+
+    $('#books_form').submit((e)=>{
+        e.preventDefault();
+
+        let bookObj = {
+            name: $('#name').val(),
+            author:$('#author').val(),
+            pages:$('#pages').val(),
+            price:$('#price').val(),
+            stores:$('#stores').val()
+        }
+
+        $.ajax({
+            type:"POST",
+            url:"/api/add/books",
+            data: JSON.stringify(bookObj),
+            contentType:"application/json",
+            success:(data,status,xhr)=>{
+                $('#books_form')[0].reset();
+                alert('thank you !!! ')
+            },
+            error:(xhr)=>{
+                alert('Something is f up...:o')
+            }
+        })
+
+    })
+
+
+</script>
+
+
+
+</html>

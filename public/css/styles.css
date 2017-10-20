@@ -1,0 +1,76 @@
+
+
+body {
+    margin:0;
+    padding:0;
+    font-family: Roboto;
+}
+
+header {
+    padding:20px;
+    box-sizing: border-box;
+    background: red;
+}
+
+header a {
+    text-decoration: none;
+    color:#fff;
+    padding-right: 10px;
+}
+
+.container {
+    padding:20px;
+    box-sizing: border-box;
+}
+
+.book_item{
+    padding:10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    display:block;
+    text-decoration: none;
+    
+}
+.book_item .item.name {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.book_item .item span{
+    font-weight: 700;
+}
+
+
+/*======FORMS======*/
+
+label {
+    display:block;
+    margin-bottom: 5px;
+}
+
+.form-element {
+    margin-bottom: 20px;
+}
+
+input {
+    width:100%;
+    font-size: 18px;
+    padding:5px;
+    box-sizing: border-box;
+}
+button {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #00a2ec;
+    border: 1px solid #b6b6b6;
+    color: #fff;
+}
+
+select {
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
