@@ -1,0 +1,31 @@
+<form id="form_upload">
+    <input type="text" name="name"/>
+    <input type="file" name="image" multiple /> <br/>
+    <input type="submit" name="submit" id="submit" value="Upload" /> 
+</form>
+
+<script>
+    
+    $('#form_upload').submit(function(evt){
+        evt.preventDefault();
+
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url:'/api/uploads',
+            type:'POST',
+            data:formData,
+            async: false,
+            contentType: false,
+            cache: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success:function(response){
+                alert(response)
+            }
+        })
+
+
+    })
+
+
+</script>
