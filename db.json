@@ -1,0 +1,23 @@
+{
+  "messages": [
+    {
+      "id": 2,
+      "title": "Buy tickets",
+      "owner": "Me",
+      "message": "Remember to buy knicks tickets. I know they suck but anyways.17-65...damn !!",
+      "date": "date"
+    },
+    {
+      "owner": "Mom",
+      "title": "Take out the trash",
+      "message": "Would you please take the trash out, thanks...",
+      "id": 3
+    },
+    {
+      "owner": "Francis",
+      "title": "Must watch !!",
+      "message": "There is a new tarantino movie, you must watch it dude.",
+      "id": 4
+    }
+  ]
+}
