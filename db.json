@@ -1,0 +1,16 @@
+{
+  "messages": [
+    {
+      "owner": "Me",
+      "title": "Buy tickets",
+      "message": "Remember to buy knicks tickets for the next week.",
+      "id": 1
+    },
+    {
+      "owner": "Mom",
+      "title": "Trash",
+      "message": "Take the trash please. UPDATED 2",
+      "id": 2
+    }
+  ]
+}
