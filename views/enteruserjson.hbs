@@ -1,0 +1,31 @@
+
+<h1>Enter new user</h1>
+
+<form id="form">
+
+    <div>Enter first name</div>
+    <input type="text" name="firstname" id="firstname">
+
+    <div>Enter lastname</div>
+    <input type="text" name="lastname" id="lastname">
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<script>
+    $('#form').on('submit',(e)=>{
+        e.preventDefault();
+
+        const firstname = $('#firstname').val();
+        const lastname = $('#lastname').val();
+
+        $.ajax({
+            type:"POST",
+            url:"/enteruserjson",
+            data:JSON.stringify({firstname,lastname}),
+            contentType:"application/json"
+        });
+
+    })
+</script>

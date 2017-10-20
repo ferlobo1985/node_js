@@ -1,0 +1,30 @@
+
+
+
+{{#if valid}}
+    <h1>Profile of {{name}}</h1>
+    <p>Name:<strong>{{name}}</strong></p>
+    <p>Lastname:<strong>{{lastname}}</strong></p>
+{{else}}
+    you are not auth
+{{/if}}
+
+{{#each pets}}
+    {{this}}
+{{/each}}
+
+</br>
+
+{{#each parents}}
+    {{#each this}}
+        {{this}}
+    {{/each}}
+{{/each}}
+
+</br>
+
+{{#each parents}}
+    {{#each this as |val key|}}
+        {{key}} : {{val}} </br>
+    {{/each}}
+{{/each}}
